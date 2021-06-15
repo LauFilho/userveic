@@ -32,14 +32,13 @@ public class User implements Serializable {
 	}
 	
 	public User(Long id, String nome, String email, String cpf, LocalDate dataNascimento) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 	}
-
+	//Getters e Setters logo abaixo
 	public Long getId() {
 		return id;
 	}
