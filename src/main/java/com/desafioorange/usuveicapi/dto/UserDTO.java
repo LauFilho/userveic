@@ -1,40 +1,47 @@
-package com.desafioorange.usuveicapi.entity;
+package com.desafioorange.usuveicapi.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.desafioorange.usuveicapi.entity.User;
+import com.desafioorange.usuveicapi.entity.Vehicle;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "tb_user")
-public class User implements Serializable {
+public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
-
+	@NotBlank(message = "{campo.nome.obrigatorio}")
 	private String nome;
+	
+	@NotBlank(message = "{campo.email.obrigatorio}")
 	private String email;
+	
+	@NotBlank(message = "{campo.cpf.obrigatorio}")
+	@CPF(message = "{campo.cpf.invalido}")
 	private String cpf;
-
+	
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataNascimento;
+	private LocalDate  dataNascimento;
+	
+	private List<Vehicle> vehicle;
+	
+	public UserDTO() {
+	}
 
-	@OneToMany(mappedBy = "user")
-	private List<Vehicle> vehicle = new ArrayList<>();
-
-	public User(Long id, String nome, String email, String cpf, LocalDate dataNascimento, List<Vehicle> vehicle) {
-		super();
+	public UserDTO(Long id, 
+			@NotBlank(message = "{campo.nome.obrigatorio}") String nome,
+			@NotBlank(message = "{campo.email.obrigatorio}") String email,
+			@NotBlank(message = "{campo.cpf.obrigatorio}") 
+			@CPF(message = "{campo.cpf.invalido}") String cpf,
+			LocalDate dataNascimento, List<Vehicle> vehicle) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -43,11 +50,18 @@ public class User implements Serializable {
 		this.vehicle = vehicle;
 	}
 
-	public User() {
 
+
+	public UserDTO(User p) {
+		this.id = p.getId();
+		this.nome = p.getNome();
+		this.email = p.getEmail();
+		this.cpf = p.getCpf();
+		this.dataNascimento = p.getDataNascimento();
+		this.vehicle = p.getVehicle();
 	}
+	// Getters e Setters Omissos
 
-	// Getters e Setters logo abaixo
 	public Long getId() {
 		return id;
 	}
@@ -100,4 +114,5 @@ public class User implements Serializable {
 		this.vehicle = vehicle;
 	}
 
+	
 }

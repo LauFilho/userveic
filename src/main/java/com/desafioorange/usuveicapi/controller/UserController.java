@@ -1,12 +1,11 @@
 package com.desafioorange.usuveicapi.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,22 +20,24 @@ import com.desafioorange.usuveicapi.repository.UserRepository;
 @RequestMapping(value = "/users")
 public class UserController {
 
-	@GetMapping // Notação usada para retornar dados
-	public ResponseEntity<List<User>> findAll() {
-		List<User> list = new ArrayList<>();
-		list.add(new User(1L, "Laudelino Filho", "laualmeidafilho@hotmail.com", "12345678901", LocalDate.now()));
-		list.add(new User(2L, "Samara Farias", "laualmeidafilho@hotmail.com", "12345678901", LocalDate.now()));
-
-		return ResponseEntity.ok().body(list);
-	}
-
-	@Autowired
+	@Autowired// É responsável pela injeção de dependência
 	UserRepository repository;
+	
+	@GetMapping // Notação usada para retornar dados
+	public List<User> findAll() {
+		
+		return repository.findAll();
+		
+	}
 
 	@PostMapping // Notação usada para escrever dados
 	@ResponseStatus(HttpStatus.CREATED) // 201
-	public User save(@RequestBody User user) {
+	public User save(@RequestBody User user, HttpServletResponse response) {
+		
 		return repository.save(user);
 	}
-
+	
 }
+	
+	
+
