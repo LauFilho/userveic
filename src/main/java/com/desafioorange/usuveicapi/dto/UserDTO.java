@@ -1,10 +1,10 @@
 package com.desafioorange.usuveicapi.dto;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -12,36 +12,37 @@ import com.desafioorange.usuveicapi.entity.User;
 import com.desafioorange.usuveicapi.entity.Vehicle;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class UserDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class UserDTO {
 
 	private Long id;
 	@NotBlank(message = "{campo.nome.obrigatorio}")
 	private String nome;
-	
+
 	@NotBlank(message = "{campo.email.obrigatorio}")
 	private String email;
-	
+
 	@NotBlank(message = "{campo.cpf.obrigatorio}")
 	@CPF(message = "{campo.cpf.invalido}")
+	@Size(min = 11, max = 11, message = "É obrigatório CPF conter 11 dígitos")
 	private String cpf;
-	
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate  dataNascimento;
-	
+	private Date dataNascimento;
+
 	private List<Vehicle> vehicle;
-	
+
 	public UserDTO() {
 	}
+	
+	public User newUser() {
+		
+		return new User(nome,cpf,email,dataNascimento);
+	}
 
-	public UserDTO(Long id, 
-			@NotBlank(message = "{campo.nome.obrigatorio}") String nome,
+	public UserDTO(Long id, @NotBlank(message = "{campo.nome.obrigatorio}") String nome,
 			@NotBlank(message = "{campo.email.obrigatorio}") String email,
-			@NotBlank(message = "{campo.cpf.obrigatorio}") 
-			@CPF(message = "{campo.cpf.invalido}") String cpf,
-			LocalDate dataNascimento, List<Vehicle> vehicle) {
+			@NotBlank(message = "{campo.cpf.obrigatorio}") @CPF(message = "{campo.cpf.invalido}") String cpf,
+			Date dataNascimento, List<Vehicle> vehicle) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -49,8 +50,6 @@ public class UserDTO implements Serializable {
 		this.dataNascimento = dataNascimento;
 		this.vehicle = vehicle;
 	}
-
-
 
 	public UserDTO(User p) {
 		this.id = p.getId();
@@ -60,7 +59,6 @@ public class UserDTO implements Serializable {
 		this.dataNascimento = p.getDataNascimento();
 		this.vehicle = p.getVehicle();
 	}
-	// Getters e Setters Omissos
 
 	public Long getId() {
 		return id;
@@ -94,17 +92,15 @@ public class UserDTO implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
 	public List<Vehicle> getVehicle() {
 		return vehicle;
@@ -114,5 +110,4 @@ public class UserDTO implements Serializable {
 		this.vehicle = vehicle;
 	}
 
-	
 }

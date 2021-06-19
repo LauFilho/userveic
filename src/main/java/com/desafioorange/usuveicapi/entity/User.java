@@ -1,10 +1,11 @@
 package com.desafioorange.usuveicapi.entity;
 
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,24 +17,27 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nome;
+
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private String cpf;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 
 	@OneToMany(mappedBy = "user")
+	@Embedded
 	private List<Vehicle> vehicle = new ArrayList<>();
 
-	public User(Long id, String nome, String email, String cpf, LocalDate dataNascimento, List<Vehicle> vehicle) {
+	public User(Long id, String nome, String email, String cpf, Date dataNascimento, List<Vehicle> vehicle) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -45,6 +49,19 @@ public class User implements Serializable {
 
 	public User() {
 
+	}
+
+	public User(Long id) {
+		this.id = id;
+
+	}
+
+	public User(String nome, String cpf, String email, Date dataNascimento) {
+		
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
 	}
 
 	// Getters e Setters logo abaixo
@@ -80,16 +97,12 @@ public class User implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public List<Vehicle> getVehicle() {

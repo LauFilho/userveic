@@ -1,56 +1,54 @@
 package com.desafioorange.usuveicapi.entity;
 
-import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_vehicle")
-public class Vehicle implements Serializable {
-	private static final long serialVersionUID = 1L;
+//@Table(name = "tb_vehicle")
+public class Vehicle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String marca;
 	private String modelo;
-	private String ano;
-	private Date diaRodizio;
-	private Boolean statusRodizio;
+	private Integer ano;
 	
+
 	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	public Vehicle() {
 
 	}
 
-	public Vehicle(Long id, String marca, String modelo, String ano, Date diaRodizio, Boolean statusRodizio, User user,
-			LocalDate dataNascimento) {
-		super();
+	public Vehicle(Long id, String marca, String modelo, Integer ano) {
+		
 		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
-		this.diaRodizio = diaRodizio;
-		this.statusRodizio = statusRodizio;
-		this.user = user;
-		
+	
+
 	}
 
+	public Vehicle(String marca, String modelo, Integer ano) {
 
+		this.marca = marca;
+		this.modelo = modelo;
+		this.ano = ano;
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
+	
+	
 
 	public String getMarca() {
 		return marca;
@@ -60,17 +58,10 @@ public class Vehicle implements Serializable {
 		return modelo;
 	}
 
-	public String getAno() {
+	public Integer getAno() {
 		return ano;
 	}
 
-	public Date getDiaRodizio() {
-		return diaRodizio;
-	}
-
-	public Boolean getStatusRodizio() {
-		return statusRodizio;
-	}
 
 	public User getUser() {
 		return user;
@@ -84,16 +75,8 @@ public class Vehicle implements Serializable {
 		this.modelo = modelo;
 	}
 
-	public void setAno(String ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
-	}
-
-	public void setDiaRodizio(Date diaRodizio) {
-		this.diaRodizio = diaRodizio;
-	}
-
-	public void setStatusRodizio(Boolean statusRodizio) {
-		this.statusRodizio = statusRodizio;
 	}
 
 	public void setUser(User user) {
