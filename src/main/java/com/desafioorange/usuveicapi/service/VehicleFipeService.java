@@ -12,14 +12,16 @@ import com.desafioorange.usuveicapi.dto.VehicleFipeDTO;
 public interface VehicleFipeService {
 
 	@GetMapping("/{tipoVeiculo}/marcas")
-	List<VehicleFipeDTO> getListaMarcas(@PathVariable("tipoVeiculo") String tipoVeiculo);
+	List<VehicleFipeDTO> getMarcas(@PathVariable("tipoVeiculo") String tipoVeiculo);
 
 	@GetMapping("/{tipoVeiculo}/marcas/{idmarca}/modelos")
-	VehicleFipeDTO getListaMarcaModelos(@PathVariable("tipoVeiculo") String tipoVeiculo,@PathVariable("idmarca") Long idmarca);
+	VehicleFipeDTO getModelos(@PathVariable("tipoVeiculo") String tipoVeiculo,@PathVariable("idmarca") Long idmarca);
 
 	@GetMapping("/{tipoVeiculo}/marcas/{idmarca}/modelos/{idmodelo}/anos")
-    List<VehicleFipeDTO> getListaModeloAnos(@PathVariable("tipoVeiculo") String tipoVeiculo, @PathVariable("idmarca") Long idmarca, @PathVariable("idmodelo") Long idmodelo);
+    List<VehicleFipeDTO> getAnos(@PathVariable("tipoVeiculo") String tipoVeiculo, @PathVariable("idmarca") Long idmarca, @PathVariable("idmodelo") Long idmodelo);
 
     @GetMapping("/{tipoVeiculo}/marcas/{idmarca}/modelos/{idmodelo}/anos/{idano}")
-    Object getModelo(@PathVariable("tipoVeiculo") String tipoVeiculo, @PathVariable("idmarca") Long idmarca, @PathVariable("idmodelo") Long idmodelo, @PathVariable("idano") String idano);
+    Object getModeloValor(@PathVariable("tipoVeiculo") String tipoVeiculo, @PathVariable("idmarca") Long idmarca, @PathVariable("idmodelo") Long idmodelo, @PathVariable("idano") String idano);
+    
+    
 }

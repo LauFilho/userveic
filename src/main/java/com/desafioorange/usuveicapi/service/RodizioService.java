@@ -1,9 +1,7 @@
 package com.desafioorange.usuveicapi.service;
 
 import java.text.DateFormatSymbols;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class RodizioService {
@@ -19,8 +17,8 @@ public class RodizioService {
 	
 	// item 2 do desafio do rodizio
 	 public static boolean isDiaRodizio(Integer ano) {
-	        Calendar agora = Calendar.getInstance(new Locale("pt", "BR"));
-	        return agora.get(Calendar.DAY_OF_WEEK) == regraRodizio(ano);
+	        Calendar hoje = Calendar.getInstance(new Locale("pt", "BR"));
+	        return hoje.get(Calendar.DAY_OF_WEEK) == regraRodizio(ano);
 	    }
 
 	private static int regraRodizio(Integer ano) {
@@ -40,22 +38,6 @@ public class RodizioService {
 		return 0;
 	}
 	
-	 //processo inverso do regraRodizio, para ter o dia da semana(texto) e muda para o formato númerico 
-	 public static List<String> digitoAnoHoje() {
-	        Calendar agora = Calendar.getInstance(new Locale("pt", "BR"));
-	        switch (agora.get(Calendar.DAY_OF_WEEK)) {
-	            case Calendar.MONDAY:
-	                return Arrays.asList("0", "1");
-	            case Calendar.TUESDAY:
-	                return Arrays.asList("2", "3");
-	            case Calendar.WEDNESDAY:
-	                return Arrays.asList("4", "5");
-	            case Calendar.THURSDAY:
-	                return Arrays.asList("6", "7");
-	            case Calendar.FRIDAY:
-	                return Arrays.asList("8", "9");
-	        }
-	        return Arrays.asList();
-	    }
+	
 
 }

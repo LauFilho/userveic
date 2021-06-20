@@ -1,46 +1,47 @@
 package com.desafioorange.usuveicapi.dto;
 
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Range;
+
 import com.desafioorange.usuveicapi.entity.Vehicle;
 import com.desafioorange.usuveicapi.service.RodizioService;
 
 public class VehicleDTO {
 
-	private Integer ano;
+	@NotBlank(message = "{campo.veiculo.marca}")
 	private String marca;
+	@NotBlank(message = "{campo.veiculo.modelo}")
 	private String modelo;
+	@NotBlank(message = "{campo.veiculo.ano}")
+	@Range(min = 1900, max = 9999, message = "Ano no formato XXXX")
+	private Integer AnoModelo;
 
-	public VehicleDTO() {
+	@NotBlank(message = "{campo.userid.naoexiste}")
+	private Long idUser;
 
-	}
-	
-	//Retorna o dia do rodizio do veículo
+	// Retorna o dia do rodizio do veículo
 	public String getDiaRodizio() {
 
-		return RodizioService.diaRodizio(this.ano);
+		return RodizioService.diaRodizio(AnoModelo);
 
 	}
 
 	// Checa se é dia de rodizio
 	public boolean isRodizio() {
 
-		return RodizioService.isDiaRodizio(this.ano);
+		return RodizioService.isDiaRodizio(AnoModelo);
 
 	}
 
-	public VehicleDTO(Integer ano, String marca, String modelo) {
-		this.ano = ano;
-		this.marca = marca;
-		this.modelo = modelo;
-	}
-	
-	public VehicleDTO(Vehicle vehicle) {
-		this.ano = vehicle.getAno();
-		this.marca = vehicle.getMarca();
-		this.modelo = vehicle.getModelo();
+	public VehicleDTO() {
+
 	}
 
-	public Integer getAno() {
-		return ano;
+	public Vehicle toVehicle() {
+
+		return new Vehicle(idUser, marca, modelo, AnoModelo, getDiaRodizio(), isRodizio());
+
 	}
 
 	public String getMarca() {
@@ -51,8 +52,8 @@ public class VehicleDTO {
 		return modelo;
 	}
 
-	public void setAno(Integer ano) {
-		this.ano = ano;
+	public Integer getAnoModelo() {
+		return AnoModelo;
 	}
 
 	public void setMarca(String marca) {
@@ -61,6 +62,18 @@ public class VehicleDTO {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public void setAnoModelo(Integer AnoModelo) {
+		this.AnoModelo = AnoModelo;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 
 }

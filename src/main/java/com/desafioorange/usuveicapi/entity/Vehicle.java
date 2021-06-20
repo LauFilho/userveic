@@ -19,7 +19,8 @@ public class Vehicle {
 	private String marca;
 	private String modelo;
 	private Integer ano;
-	
+	private String diaRodizio;
+	private Boolean statusRodizio;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -30,13 +31,14 @@ public class Vehicle {
 
 	}
 
-	public Vehicle(Long id, String marca, String modelo, Integer ano) {
+	public Vehicle(Long id, String marca, String modelo, Integer ano, String diaRodizio, Boolean statusRodizio) {
 		
 		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
-	
+		this.diaRodizio = diaRodizio;
+		this.statusRodizio = statusRodizio;
 
 	}
 
@@ -45,6 +47,7 @@ public class Vehicle {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
+		
 
 	}
 	
@@ -81,6 +84,30 @@ public class Vehicle {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getDiaRodizio() {
+		return diaRodizio;
+	}
+
+	public Boolean getStatusRodizio() {
+		return statusRodizio;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setDiaRodizio(String diaRodizio) {
+		this.diaRodizio = diaRodizio;
+	}
+
+	public void setStatusRodizio(Boolean statusRodizio) {
+		this.statusRodizio = statusRodizio;
 	}
 
 }

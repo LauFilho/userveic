@@ -1,11 +1,13 @@
 package com.desafioorange.usuveicapi.service.exceptions;
 
-public class UserCadastradoException extends RuntimeException {
+public class UserException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public UserCadastradoException(String msg) {
+	public UserException(String msg) {
 		super(msg);
 	}
+	
+	
 
 }

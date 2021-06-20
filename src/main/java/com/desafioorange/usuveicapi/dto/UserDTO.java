@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.lang.NonNull;
 
 import com.desafioorange.usuveicapi.entity.User;
 import com.desafioorange.usuveicapi.entity.Vehicle;
@@ -15,13 +16,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class UserDTO {
 
 	private Long id;
+
+	@NonNull
 	@NotBlank(message = "{campo.nome.obrigatorio}")
 	private String nome;
 
+	@NonNull
 	@NotBlank(message = "{campo.email.obrigatorio}")
 	private String email;
 
 	@NotBlank(message = "{campo.cpf.obrigatorio}")
+	@NonNull
 	@CPF(message = "{campo.cpf.invalido}")
 	@Size(min = 11, max = 11, message = "É obrigatório CPF conter 11 dígitos")
 	private String cpf;
@@ -33,15 +38,17 @@ public class UserDTO {
 
 	public UserDTO() {
 	}
-	
+
 	public User newUser() {
-		
-		return new User(nome,cpf,email,dataNascimento);
+
+		return new User(nome, cpf, email, dataNascimento);
 	}
+
+
 
 	public UserDTO(Long id, @NotBlank(message = "{campo.nome.obrigatorio}") String nome,
 			@NotBlank(message = "{campo.email.obrigatorio}") String email,
-			@NotBlank(message = "{campo.cpf.obrigatorio}") @CPF(message = "{campo.cpf.invalido}") String cpf,
+			@NotBlank(message = "{campo.cpf.obrigatorio}") @CPF(message = "{campo.cpf.invalido}") @Size(min = 11, max = 11, message = "É obrigatório CPF conter 11 dígitos") String cpf,
 			Date dataNascimento, List<Vehicle> vehicle) {
 		this.id = id;
 		this.nome = nome;
@@ -99,8 +106,6 @@ public class UserDTO {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
-	
 
 	public List<Vehicle> getVehicle() {
 		return vehicle;

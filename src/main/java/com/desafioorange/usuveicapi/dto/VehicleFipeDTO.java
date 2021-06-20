@@ -3,8 +3,6 @@ package com.desafioorange.usuveicapi.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.desafioorange.usuveicapi.entity.Vehicle;
-
 public class VehicleFipeDTO {
 
 	// Variaveis da FIPE
@@ -17,20 +15,16 @@ public class VehicleFipeDTO {
 	private String SiglaCombustivel;
 	private Integer anoModelo;
 	private Integer tipoVeiculo;
-	private Long idUser;
+	private String nome;
+	private String codigo;
+	private String idmarca;
+	private String idmodelo;
 	private List<VehicleFipeDTO> anos = new ArrayList<>();
-	private List<VehicleFipeDTO> modelos = new ArrayList<>();
+    private List<VehicleFipeDTO> modelos = new ArrayList<>();
 
 	public VehicleFipeDTO() {
 
 	}
-	
-	public Vehicle toVehicle() {
-		
-		return new Vehicle(idUser,marca,modelo,anoModelo);
-
-	}
-	
 
 	public String getValor() {
 		return valor;
@@ -104,6 +98,23 @@ public class VehicleFipeDTO {
 		this.tipoVeiculo = tipoVeiculo;
 	}
 
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	public List<VehicleFipeDTO> getAnos() {
 		return anos;
 	}
@@ -118,6 +129,22 @@ public class VehicleFipeDTO {
 
 	public void setModelos(List<VehicleFipeDTO> modelos) {
 		this.modelos = modelos;
+	}
+
+	public String getIdmarca() {
+		return idmarca;
+	}
+
+	public String getIdmodelo() {
+		return idmodelo;
+	}
+
+	public void setIdmarca(String idmarca) {
+		this.idmarca = idmarca;
+	}
+
+	public void setIdmodelo(String idmodelo) {
+		this.idmodelo = idmodelo;
 	}
 
 }

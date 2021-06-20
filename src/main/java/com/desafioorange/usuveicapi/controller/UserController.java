@@ -1,13 +1,15 @@
 package com.desafioorange.usuveicapi.controller;
 
+
 import java.net.URI;
 import java.util.List;
-
+import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +34,12 @@ public class UserController {
 		return ResponseEntity.ok().body(list);
 	}
 	
-//	@GetMapping("/{id}")
-//	public <Optional>ResponseEntity <User> findUser(@ PathVariable Long UserId) {
-//		User user = userService.findUser(UserId);
-//		
-//
-//		return ResponseEntity.ok(user);
-//	}
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<User>> findUser(@ PathVariable Long id) {
+	Optional<User> user = userService.findUser(id);
+		
+		return ResponseEntity.ok(user);
+	}
 
 	// Versão inicial pra testar o EndPoint de cadastrar User
 
