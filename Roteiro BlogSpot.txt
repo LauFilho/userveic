@@ -1,0 +1,9 @@
+X 1 - Introdução
+X 2 - Falar das Tecnologias
+X 3 - Mostrar Instalação do Projeto, POM, prints e etc
+X 4 - Mostrar as Classes todas, in
+5 - Mostrar funcionando no Postman
+6 - Mostrar funcionando no H2
+7 - Mostrar erros de validação
+
+Não sei você que está lendo, mas eu me sinto bem empolgado em poder entender, conhecer

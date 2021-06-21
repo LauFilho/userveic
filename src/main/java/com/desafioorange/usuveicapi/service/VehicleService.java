@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 import com.desafioorange.usuveicapi.dto.VehicleDTO;
 import com.desafioorange.usuveicapi.entity.User;
 import com.desafioorange.usuveicapi.entity.Vehicle;
+import com.desafioorange.usuveicapi.exceptions.VehicleException;
 import com.desafioorange.usuveicapi.repository.UserRepository;
 import com.desafioorange.usuveicapi.repository.VehicleRepository;
-import com.desafioorange.usuveicapi.service.exceptions.VeiculoException;
 
 @Service
-
 public class VehicleService {
 
 	@Autowired
@@ -25,7 +24,7 @@ public class VehicleService {
 	public List<Vehicle> listarTodos() {
 
 		if (vehicleRepository.findAll().isEmpty()) {
-			throw new VeiculoException("Não há veículos cadastrados!");
+			throw new VehicleException("Não há veículos cadastrados!");
 		}
 
 		return vehicleRepository.findAll();
@@ -33,8 +32,9 @@ public class VehicleService {
 
 	public void insert(VehicleDTO newVehicleDTO, Long userid) {
 		if (!userRepository.existsById(userid)) {
-			throw new VeiculoException("Não foi possível cadastar o veículo! Usuário com esse ID não existe!");
+			throw new VehicleException("Não foi possível cadastar o veículo! Usuário com esse ID não existe!");
 		}
+
 		User user = new User();
 		Vehicle vehicle = newVehicleDTO.toVehicle();
 		user.setId(userid);

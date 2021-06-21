@@ -1,4 +1,4 @@
-package com.desafioorange.usuveicapi.service.exceptions;
+package com.desafioorange.usuveicapi.exceptions;
 
 public class UserException extends RuntimeException {
 

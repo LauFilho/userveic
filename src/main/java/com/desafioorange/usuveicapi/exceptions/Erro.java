@@ -1,4 +1,4 @@
-package com.desafioorange.usuveicapi.service.exceptions;
+package com.desafioorange.usuveicapi.exceptions;
 
 import java.time.OffsetDateTime;
 import java.util.List;

@@ -6,40 +6,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-//@Table(name = "tb_vehicle")
+@Table(name = "tb_vehicle")
 public class Vehicle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String marca;
+
 	private String modelo;
+
 	private Integer ano;
 	private String diaRodizio;
 	private Boolean statusRodizio;
-
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
 
-	public Vehicle() {
-
-	}
-
 	public Vehicle(Long id, String marca, String modelo, Integer ano, String diaRodizio, Boolean statusRodizio) {
-		
+
 		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
 		this.diaRodizio = diaRodizio;
 		this.statusRodizio = statusRodizio;
-
 	}
 
 	public Vehicle(String marca, String modelo, Integer ano) {
@@ -47,11 +45,12 @@ public class Vehicle {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
-		
 
 	}
-	
-	
+
+	public Vehicle() {
+
+	}
 
 	public String getMarca() {
 		return marca;
@@ -64,7 +63,6 @@ public class Vehicle {
 	public Integer getAno() {
 		return ano;
 	}
-
 
 	public User getUser() {
 		return user;

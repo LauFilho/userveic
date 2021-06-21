@@ -13,8 +13,7 @@ public class RodizioService {
 		String[] nomesDosDias = simbolo.getWeekdays();
 		return nomesDosDias[dia];
 		
-	}
-	
+	}	
 	// item 2 do desafio do rodizio
 	 public static boolean isDiaRodizio(Integer ano) {
 	        Calendar hoje = Calendar.getInstance(new Locale("pt", "BR"));

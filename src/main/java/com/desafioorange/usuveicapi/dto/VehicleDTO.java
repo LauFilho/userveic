@@ -19,28 +19,18 @@ public class VehicleDTO {
 
 	@NotBlank(message = "{campo.userid.naoexiste}")
 	private Long idUser;
-
 	// Retorna o dia do rodizio do veículo
 	public String getDiaRodizio() {
-
 		return RodizioService.diaRodizio(AnoModelo);
-
 	}
-
 	// Checa se é dia de rodizio
 	public boolean isRodizio() {
-
 		return RodizioService.isDiaRodizio(AnoModelo);
-
 	}
-
-	public VehicleDTO() {
-
-	}
-
 	public Vehicle toVehicle() {
-
 		return new Vehicle(idUser, marca, modelo, AnoModelo, getDiaRodizio(), isRodizio());
+	}
+	public VehicleDTO() {
 
 	}
 

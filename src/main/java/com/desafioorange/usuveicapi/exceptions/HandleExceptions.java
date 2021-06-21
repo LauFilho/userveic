@@ -1,4 +1,4 @@
-package com.desafioorange.usuveicapi.service.exceptions;
+package com.desafioorange.usuveicapi.exceptions;
 
 import java.time.OffsetDateTime;
 
@@ -24,8 +24,8 @@ public class HandleExceptions extends ResponseEntityExceptionHandler {
 		return super.handleExceptionInternal(ex, erro, new HttpHeaders(), status, request);
 	}
 	
-	@ExceptionHandler(VeiculoException.class)
-	public ResponseEntity<Object> veiculoHandler(VeiculoException ex, WebRequest request) {
+	@ExceptionHandler(VehicleException.class)
+	public ResponseEntity<Object> veiculoHandler(VehicleException ex, WebRequest request) {
 		Erro erro = new Erro();
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		erro.setStatus(status.value());

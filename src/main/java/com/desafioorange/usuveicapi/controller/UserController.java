@@ -41,17 +41,6 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 
-	// Versão inicial pra testar o EndPoint de cadastrar User
-
-	/*
-	 * @PostMapping // Notação usada para escrever dados
-	 * 
-	 * @ResponseStatus(HttpStatus.CREATED) // 201 public User save(@RequestBody User
-	 * user, HttpServletResponse response) {
-	 * 
-	 * return repository.save(user); }
-	 */
-
 	@PostMapping
 	public ResponseEntity<UserDTO> insertUser(@RequestBody @Valid UserDTO dto) {
 		dto = userService.insertUser(dto);
